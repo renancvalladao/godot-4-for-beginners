@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3hxq1e1cis3i"]
+
+[ext_resource type="PackedScene" uid="uid://urrkft78f8w1" path="res://laser/laser.tscn" id="1_w4y8a"]
+[ext_resource type="PackedScene" uid="uid://c816l4k35544g" path="res://pipe/pipe.tscn" id="2_mumaf"]
+
+[node name="Pipes" type="Node2D"]
+
+[node name="Laser" parent="." instance=ExtResource("1_w4y8a")]
+
+[node name="Upper" parent="." instance=ExtResource("2_mumaf")]
+position = Vector2(0, -80)
+rotation = 3.14159
+
+[node name="Lower" parent="." instance=ExtResource("2_mumaf")]
+position = Vector2(0, 80)
