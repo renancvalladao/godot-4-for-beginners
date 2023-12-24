@@ -8,6 +8,7 @@ extends Node2D
 @onready var spawn_timer = $SpawnTimer
 
 func _ready():
+	GameManager.on_game_over.connect(on_game_over)
 	spawn_pipes()
 
 func _process(delta):
@@ -23,5 +24,5 @@ func spawn_pipes() -> void:
 func _on_spawn_timer_timeout():
 	spawn_pipes()
 
-func _on_plane_died():
-	GameManager.load_main_scene()
+func on_game_over():
+	pass

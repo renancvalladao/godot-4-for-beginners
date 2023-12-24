@@ -1,5 +1,7 @@
 extends Node
 
+signal on_game_over
+
 var game_scene: PackedScene = preload("res://game/game.tscn")
 var main_scene: PackedScene = preload("res://main/main.tscn")
 

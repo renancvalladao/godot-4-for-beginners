@@ -7,7 +7,7 @@ extends Control
 var _can_press_space: bool = false
 
 func _ready():
-	on_game_over()
+	GameManager.on_game_over.connect(on_game_over)
 
 func _process(delta):
 	if _can_press_space:
