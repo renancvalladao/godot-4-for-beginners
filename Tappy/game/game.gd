@@ -8,6 +8,7 @@ extends Node2D
 @onready var spawn_timer = $SpawnTimer
 
 func _ready():
+	GameManager.set_score(0)
 	GameManager.on_game_over.connect(on_game_over)
 	spawn_pipes()
 
