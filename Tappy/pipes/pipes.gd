@@ -1,6 +1,6 @@
 extends Node2D
 
-const SCROLL_SPEED: float = 50.0
+const SCROLL_SPEED: float = 120.0
 
 func _ready():
 	pass
