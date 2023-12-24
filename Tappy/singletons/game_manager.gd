@@ -22,7 +22,6 @@ func set_score(v: int) -> void:
 	if _score > _high_score:
 		_high_score = _score
 	on_score_updated.emit()
-	print("sc: %s hs: %s" % [_score, _high_score])
 
 func increment_score() -> void:
 	set_score(_score + 1)

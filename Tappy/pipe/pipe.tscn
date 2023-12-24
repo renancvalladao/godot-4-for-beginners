@@ -6,6 +6,7 @@
 size = Vector2(65, 600)
 
 [node name="Pipe" type="Area2D"]
+collision_layer = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_i6knr")
