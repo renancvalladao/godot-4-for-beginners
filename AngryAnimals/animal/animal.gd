@@ -1,5 +1,10 @@
 extends RigidBody2D
 
+@onready var stretch_sound = $StretchSound
+
+const DRAG_LIM_MAX: Vector2 = Vector2(0, 60)
+const DRAG_LIM_MIN: Vector2 = Vector2(-60, 0)
+
 var _dead: bool = false
 var _dragging: bool = false
 var _released: bool = false
@@ -50,7 +55,12 @@ func drag_it() -> void:
 	_last_drag_amount = (_last_dragged_position - gmp).length()
 	_last_dragged_position = gmp
 	
+	if _last_drag_amount > 0 && !stretch_sound.playing:
+		stretch_sound.play()
+	
 	_dragged_vector = gmp - _drag_start
+	_dragged_vector.x = clampf(_dragged_vector.x, DRAG_LIM_MIN.x, DRAG_LIM_MAX.x)
+	_dragged_vector.y = clampf(_dragged_vector.y, DRAG_LIM_MIN.y, DRAG_LIM_MAX.y)
 	global_position = _start + _dragged_vector
 
 func die() -> void:
