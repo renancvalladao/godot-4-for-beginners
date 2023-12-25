@@ -15,11 +15,23 @@ func _ready():
 
 func _physics_process(delta):
 	update_debug_label()
+	
+	if _released:
+		pass
+	else:
+		if !_dragging:
+			return
+		else:
+			drag_it()
 
 func update_debug_label() -> void:
 	var s = "g_pos: %s\n" % Utils.vec2_to_str(global_position)
 	s += "dragging: %s released: %s\n" % [_dragging, _released]
-	s += "start: %s drag_start: %s\n" % [Utils.vec2_to_str(_start), Utils.vec2_to_str(_drag_start)]
+	s += "start: %s drag_start: %s dragged_vector: %s\n" % [
+		Utils.vec2_to_str(_start),
+		Utils.vec2_to_str(_drag_start),
+		Utils.vec2_to_str(_dragged_vector)
+	]
 	s += "last_dragged_position: %s last_drag_amount: %.1f\n" % [
 		Utils.vec2_to_str(_last_dragged_position),
 		_last_drag_amount
@@ -31,6 +43,15 @@ func grab_it() -> void:
 	_dragging = true
 	_drag_start = get_global_mouse_position()
 	_last_dragged_position = _drag_start
+
+func drag_it() -> void:
+	var gmp = get_global_mouse_position()
+	
+	_last_drag_amount = (_last_dragged_position - gmp).length()
+	_last_dragged_position = gmp
+	
+	_dragged_vector = gmp - _drag_start
+	global_position = _start + _dragged_vector
 
 func die() -> void:
 	if _dead:
