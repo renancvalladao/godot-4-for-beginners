@@ -22,3 +22,7 @@ func die() -> void:
 
 func _on_screen_exited():
 	die()
+
+func _on_input_event(viewport, event: InputEvent, shape_idx):
+	if event.is_action("drag"):
+		print(event)
