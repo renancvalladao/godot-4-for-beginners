@@ -11,7 +11,8 @@ func _ready():
 	on_animal_died()
 
 func _process(delta):
-	pass
+	if Input.is_key_pressed(KEY_Q):
+		GameManager.load_main_scene()
 
 func on_update_debug_label(text: String) -> void:
 	debug_label.text = text
