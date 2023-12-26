@@ -70,8 +70,10 @@ func check_on_target() -> void:
 	if cb.size() == 0:
 		return
 	
-	if cb[0].is_in_group(GameManager.GROUP_CUP):
-		print("Cup died")
+	var cup = cb[0]
+	
+	if cup.is_in_group(GameManager.GROUP_CUP):
+		cup.die()
 		die()
 
 func play_collision() -> void:
