@@ -11,7 +11,7 @@ func _ready():
 	SignalManager.on_animal_died.connect(on_animal_died)
 	on_animal_died()
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_key_pressed(KEY_Q):
 		GameManager.load_main_scene()
 

@@ -11,7 +11,7 @@ func _ready():
 	SignalManager.on_attempt_made.connect(on_attempt_made)
 	SignalManager.on_game_over.connect(on_game_over)
 
-func _process(delta):
+func _process(_delta):
 	if vb_2.visible && Input.is_key_pressed(KEY_SPACE):
 		GameManager.load_main_scene()
 
