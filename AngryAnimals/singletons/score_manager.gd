@@ -36,5 +36,24 @@ func set_target_cups(t: int) -> void:
 	_target_cups = t
 	print("set_target_cups: ", _target_cups)
 
+func attempt_made() -> void:
+	_attempts += 1
+	SignalManager.on_attempt_made.emit()
+	print("attempt_made() _target_cups: %s, _attempts: %s, _cups_hit: %s" % [
+		_target_cups, _attempts, _cups_hit
+	])
+
+func check_game_over() -> void:
+	if _cups_hit >= _target_cups:
+		print("Game Over", _level_scores)
+		SignalManager.on_game_over.emit()
+		if _level_scores[_level_selected] > _attempts:
+			_level_scores[_level_selected] = _attempts
+			print("Record set:", _level_scores)
+
 func on_cup_destroyed() -> void:
 	_cups_hit += 1
+	print("on_cup_destroyed() _target_cups: %s, _attempts: %s, _cups_hit: %s" % [
+		_target_cups, _attempts, _cups_hit
+	])
+	check_game_over()
