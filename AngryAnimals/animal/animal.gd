@@ -2,10 +2,12 @@ extends RigidBody2D
 
 @onready var stretch_sound = $StretchSound
 @onready var launch_sound = $LaunchSound
+@onready var collision_sound = $CollisionSound
 
 const DRAG_LIM_MAX: Vector2 = Vector2(0, 60)
 const DRAG_LIM_MIN: Vector2 = Vector2(-60, 0)
 const IMPULSE_MULT: float = 20.0
+const FIRE_DELAY: float = 0.25
 
 var _dead: bool = false
 var _dragging: bool = false
@@ -16,6 +18,7 @@ var _dragged_vector: Vector2 = Vector2.ZERO
 var _last_dragged_position: Vector2 = Vector2.ZERO
 var _last_drag_amount: float = 0.0
 var _fired_time: float = 0.0
+var _last_collision_count: int = 0
 
 func _ready():
 	_start = global_position
@@ -24,7 +27,9 @@ func _physics_process(delta):
 	update_debug_label()
 	
 	if _released:
-		pass
+		_fired_time += delta
+		if _fired_time > FIRE_DELAY:
+			play_collision()
 	else:
 		if !_dragging:
 			return
@@ -35,7 +40,7 @@ func _physics_process(delta):
 				drag_it()
 
 func update_debug_label() -> void:
-	var s = "g_pos: %s\n" % Utils.vec2_to_str(global_position)
+	var s = "g_pos: %s contacts: %s\n" % [Utils.vec2_to_str(global_position), get_contact_count()]
 	s += "dragging: %s released: %s\n" % [_dragging, _released]
 	s += "start: %s drag_start: %s dragged_vector: %s\n" % [
 		Utils.vec2_to_str(_start),
@@ -48,6 +53,11 @@ func update_debug_label() -> void:
 	]
 	s += "ang: %.1f linear: %s fired_time: %.1f" % [angular_velocity, Utils.vec2_to_str(linear_velocity), _fired_time]
 	SignalManager.on_update_debug_label.emit(s)
+
+func play_collision() -> void:
+	if (_last_collision_count == 0 && get_contact_count() > 0 && !collision_sound.playing):
+		collision_sound.play()
+	_last_collision_count = get_contact_count()
 
 func grab_it() -> void:
 	_dragging = true

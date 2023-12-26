@@ -15,6 +15,9 @@ texture = ExtResource("1_luaai")
 [node name="Cup" parent="." instance=ExtResource("2_ygfre")]
 position = Vector2(539, 469)
 
+[node name="Cup2" parent="." instance=ExtResource("2_ygfre")]
+position = Vector2(346, 469)
+
 [node name="DebugLabel" type="Label" parent="."]
 offset_left = 24.0
 offset_top = 24.0
