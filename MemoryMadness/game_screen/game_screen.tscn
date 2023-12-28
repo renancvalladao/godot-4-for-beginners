@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://b0xwv6wqtwoja"]
+[gd_scene load_steps=7 format=3 uid="uid://b0xwv6wqtwoja"]
 
+[ext_resource type="Script" path="res://game_screen/game_screen.gd" id="1_mlovc"]
 [ext_resource type="LabelSettings" uid="uid://bjbp154oiewdx" path="res://assets/GM_32_dark.tres" id="1_xcguv"]
 [ext_resource type="Texture2D" uid="uid://dblu0fdotlclm" path="res://assets/ui/blue_button00.png" id="2_aoavw"]
 [ext_resource type="Texture2D" uid="uid://nl8duao4mw62" path="res://assets/ui/yellow_button00.png" id="3_l7i2r"]
@@ -13,6 +14,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_mlovc")
 
 [node name="HB" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -99,3 +101,7 @@ text = "Exit"
 label_settings = ExtResource("5_duj0k")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Sound" type="AudioStreamPlayer" parent="."]
+
+[connection signal="pressed" from="HB/MC2/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]

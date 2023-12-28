@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://dpruiqwdijp6n"]
+
+[ext_resource type="Script" path="res://master_screen/master_screen.gd" id="1_d03ns"]
+[ext_resource type="Texture2D" uid="uid://deexwyny66wjv" path="res://assets/images/backgroundEmpty.png" id="2_p2xud"]
+[ext_resource type="PackedScene" uid="uid://cdhjrycbvw5rx" path="res://main_screen/main_screen.tscn" id="3_5x61f"]
+[ext_resource type="PackedScene" uid="uid://b0xwv6wqtwoja" path="res://game_screen/game_screen.tscn" id="4_fh2d7"]
+
+[node name="MasterScreen" type="CanvasLayer"]
+script = ExtResource("1_d03ns")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_p2xud")
+
+[node name="MainScreen" parent="." instance=ExtResource("3_5x61f")]
+
+[node name="GameScreen" parent="." instance=ExtResource("4_fh2d7")]
+
+[node name="Sound" type="AudioStreamPlayer" parent="."]
