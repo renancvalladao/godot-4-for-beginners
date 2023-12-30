@@ -59,6 +59,10 @@ func hide_selections() -> void:
 	for s in _selections:
 		s.reveal(false)
 
+func check_game_over() -> void:
+	if _pairs_made >= _target_pairs:
+		SignalManager.on_game_over.emit(_moves_made)
+
 func on_tile_selected(tile: MemoryTile) -> void:
 	SoundManager.play_tile_click(sound)
 	check_pair_made(tile)
@@ -67,6 +71,7 @@ func _on_reveal_timer_timeout() -> void:
 	if !selections_are_pair():
 		hide_selections()
 	_selections.clear()
+	check_game_over()
 	SignalManager.on_selection_enabled.emit()
 
 func on_game_exit_pressed() -> void:

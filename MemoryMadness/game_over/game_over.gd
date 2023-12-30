@@ -3,10 +3,11 @@ extends Control
 @onready var moves_label = $NinePatchRect/MC/VB/HB/MovesLabel
 
 func _ready():
-	pass
+	SignalManager.on_game_over.connect(on_game_over)
 
-func _process(delta):
-	pass
+func on_game_over(moves: int) -> void:
+	moves_label.text = str(moves)
+	show()
 
 func _on_exit_button_pressed():
 	hide()
