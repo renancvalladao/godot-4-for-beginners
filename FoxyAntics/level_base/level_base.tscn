@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://c3f4jlpd4pjmq"]
+[gd_scene load_steps=7 format=3 uid="uid://c3f4jlpd4pjmq"]
 
+[ext_resource type="Script" path="res://level_base/level_base.gd" id="1_2rb72"]
 [ext_resource type="Texture2D" uid="uid://bf0disy0mnsbc" path="res://assets/tiles/Terrain (16x16).png" id="1_k7p2y"]
 [ext_resource type="PackedScene" uid="uid://ck54mjiry0bqu" path="res://player_cam/player_cam.tscn" id="2_vlxpf"]
+[ext_resource type="PackedScene" uid="uid://bj3fdr8fdwr8h" path="res://player/player.tscn" id="3_iy6vw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2eqf0"]
 texture = ExtResource("1_k7p2y")
@@ -154,6 +156,7 @@ texture = ExtResource("1_k7p2y")
 sources/0 = SubResource("TileSetAtlasSource_2eqf0")
 
 [node name="LevelBase" type="Node2D"]
+script = ExtResource("1_2rb72")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_1eafk")
@@ -163,3 +166,6 @@ layer_0/tile_data = PackedInt32Array(-4, 458752, 0, -3, 458752, 0, -2, 458752, 0
 [node name="PlayerCam" parent="." instance=ExtResource("2_vlxpf")]
 position = Vector2(256, -150)
 zoom = Vector2(2, 2)
+
+[node name="Player" parent="." instance=ExtResource("3_iy6vw")]
+position = Vector2(235, -32)
