@@ -131,3 +131,14 @@ libraries = {
 "": SubResource("AnimationLibrary_hr213")
 }
 autoplay = "idle"
+
+[node name="DebugLabel" type="Label" parent="."]
+offset_left = -24.0
+offset_top = -49.0
+offset_right = 219.0
+offset_bottom = 158.0
+scale = Vector2(0.200001, 0.200001)
+theme_override_font_sizes/font_size = 48
+text = "asdasdasd
+asdasdasd
+asdasdasd"
