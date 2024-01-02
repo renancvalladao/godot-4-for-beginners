@@ -5,6 +5,7 @@ class_name Player
 @onready var sprite_2d = $Sprite2D
 @onready var animation_player = $AnimationPlayer
 @onready var debug_label = $DebugLabel
+@onready var sound_player = $SoundPlayer
 
 const GRAVITY: float = 1000.0
 const RUN_SPEED: float = 120.0
@@ -47,6 +48,7 @@ func get_input() -> void:
 		sprite_2d.flip_h = false
 	if Input.is_action_just_pressed("jump") && is_on_floor():
 		velocity.y = JUMP_VELOCITY
+		SoundManager.play_clip(sound_player, SoundManager.SOUND_JUMP)
 	
 	velocity.y = clamp(velocity.y, JUMP_VELOCITY, MAX_FALL)
 
@@ -68,6 +70,10 @@ func calculate_states() -> void:
 func set_state(new_state: PLAYER_STATE) -> void:
 	if new_state == _state:
 		return
+	
+	if _state == PLAYER_STATE.FALL:
+		if new_state == PLAYER_STATE.IDLE || new_state == PLAYER_STATE.RUN:
+			SoundManager.play_clip(sound_player, SoundManager.SOUND_LAND)
 	
 	_state = new_state
 	
